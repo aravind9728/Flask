@@ -12,16 +12,16 @@ from models import User,Post
 
 posts = [
     {
-        'author': 'Corey Schafer',
-        'title': 'Blog Post 1',
+        'author': 'BATMAN',
+        'title': 'Arkam city',
         'content': 'First post content',
-        'date_posted': 'April 20, 2018'
+        'date_posted': 'jun 20, 2020'
     },
     {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
+        'author': 'BRUCE WAYNE',
+        'title': 'Arkham Asylum',
         'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
+        'date_posted': 'jun 21, 2020'
     }
 ]
 
