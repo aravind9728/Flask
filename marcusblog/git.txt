@@ -1,0 +1,5 @@
+git add Project_folder_name
+git status (check the status)
+git commit -m 'commit_message'
+git status (check the status)
+git push
