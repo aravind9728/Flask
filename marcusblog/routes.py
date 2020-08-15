@@ -7,25 +7,10 @@ from marcusblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, Pos
 from marcusblog.models import User,Post
 from flask_login import login_user, current_user, logout_user, login_required
 
-posts = [
-    {
-        'author': 'BATMAN',
-        'title': 'Arkham C  ity',
-        'content': 'First post',
-        'date_posted': 'jun 20, 2020'
-    },
-    {
-        'author': 'BRUCE WAYNE',
-        'title': 'Arkham Asylum',
-        'content': 'Second post',
-        'date_posted': 'jun 21, 2020'
-    }
-]
-
-
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Post.query.all()
     return render_template('home.html', posts=posts)
 
 
@@ -104,14 +89,17 @@ def account():
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file = image_file, form=form)
 
-    @app.route("/post/new", methods=['GET', 'POST')
-    @login_required
-    def new_post():
-        form = 'PostForm'
-        if form.validate_on_submit():
-            flash(f'Your post has been created!', 'success')
-            return redirect(url_for('home'))
-        return render_template('create_post.html', title = 'New Post')
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    if form.validate_on_submit():
+        posts = Post(title=form.title.data, content=form.content.data, author=current_user)
+        db.session.add(posts)
+        db.session.commit()
+        flash(f'Your post has been created!', 'success')
+        return redirect(url_for('home'))
+    return render_template('create_post.html', title = 'New Post', form=form)
 
 
 
