@@ -3,3 +3,11 @@ git status (check the status)
 git commit -m 'commit_message'
 git status (check the status)
 git push
+
+
+git difftool - helps you to check the difference between the new file and the old 
+
+DB
+open python in CMD
+import the DB module from marcusblog import db
+create db - db.create_all()
