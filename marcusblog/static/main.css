@@ -1,8 +1,28 @@
 body {
+  
     background: #fafafa;
     color: #333333;
     margin-top: 5rem;
   }
+  
+  /*  BG video */
+  .section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  } */
+
   
   h1, h2, h3, h4, h5, h6 {  
     color: #2f1793;
@@ -78,3 +98,5 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
+
+  
