@@ -1,2 +1,2 @@
-cd ngrok file location
-ngrok http localostnumber (5000)
+cd C:\Users\WIN7i\projects\Flask
+ngrok http 5000
