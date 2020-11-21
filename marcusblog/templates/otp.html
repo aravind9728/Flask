@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<form action="/validateotp" method="POST">
+    <div>
+        <label> Enter the otp </label>
+        <input type="text" name="otp"/>
+        <button class="btn btn-outline-info" type="sumbit">LOGIN</button>
+        
+    </div>
+
+{% endblock content %}

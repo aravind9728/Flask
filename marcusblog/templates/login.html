@@ -42,9 +42,16 @@
                     <a href="{{ url_for('users.reset_request')}}">Forgot Password?</a>
                 </small>
             </div>
-            
         </form>
     </div>
+    <form action="/getotp" method="post">
+        <div>
+            <label> Enter the mobile number </label>
+            <input type="text" name="number" placeholder="+91***"/>
+            <button class="btn btn-outline-info" type="sumbit">GET OTP</button>
+            
+        </div>
+    </form>
     <div class="border-top pt-3">
         <small class="text-muted">
             New User? <a class="ml-2" href="{{ url_for('users.register') }}">Sign Up here</a>

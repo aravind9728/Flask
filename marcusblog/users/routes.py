@@ -4,6 +4,8 @@ from marcusblog import db, bcrypt
 from marcusblog.models import User, Post
 from marcusblog.users.forms import (RegistrationForm,RequestResetForm,ResetPasswordForm,LoginForm,UpdateAccountForm )
 from marcusblog.users.utils import save_picture, send_reset_email
+from twilio.rest import Client
+import random 
 
 users = Blueprint('users', __name__)
 
@@ -38,6 +40,32 @@ def login():
             flash('Incorrect username or password. Please enter your correct username and password or click forget password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
+@users.route("/getotp", methods =['POST'])
+def getotp():
+    number = request.form['number']
+    val = getotpAPI(number)
+    if val:
+        return render_template("otp.html")
+
+def generateOTP():
+    return random.randrange(100000,999999)  
+
+def getotpAPI(number):
+    account_sid='ACdcf496da61c4c4a0502ff4ccd32b8762'
+    auth_token ='2252156cd3be45b8caadacb5a2ab31af'
+    client = Client(account_sid,auth_token)
+    otp = generateOTP()
+    body = 'Your OTP is' + str(otp)
+    message = client.messages.create(from_='+13513336544',body=body,to=number)
+
+    if message.sid:
+        return True
+    else:
+        False
+
+# @users.route ("/validateotp")
+# def validateotp():
+#     return render_template("home.html")
 
 @users.route("/logout")
 def logout():

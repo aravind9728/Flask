@@ -6,7 +6,7 @@ from flask_mail import Message
 from marcusblog import mail
 from flask import current_app
 
-
+"Profile picture function"
 
 def save_picture(from_picture):
     random_hex = secrets.token_hex(8)
@@ -23,7 +23,7 @@ def save_picture(from_picture):
     return picture_fn
 
 
-
+"email verification"
     
 def send_reset_email(user):
     token = user.get_reset_token()

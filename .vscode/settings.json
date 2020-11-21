@@ -2,5 +2,6 @@
     "python.linting.pylintArgs": [
         "--load-plugins",
         "pylint-flask"
-    ]
+    ],
+    "python.pythonPath": "C:\\Users\\ELCOT\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }
