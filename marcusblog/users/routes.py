@@ -51,8 +51,8 @@ def generateOTP():
     return random.randrange(100000,999999)  
 
 def getotpAPI(number):
-    account_sid='ACdcf496da61c4c4a0502ff4ccd32b8762'
-    auth_token ='2252156cd3be45b8caadacb5a2ab31af'
+    account_sid=''
+    auth_token =''
     client = Client(account_sid,auth_token)
     otp = generateOTP()
     body = 'Your OTP is' + str(otp)
