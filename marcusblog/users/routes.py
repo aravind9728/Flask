@@ -1,4 +1,5 @@
 from flask import render_template, url_for,flash,redirect,request,Blueprint
+from flask import Flask
 from flask_login import login_user, current_user, logout_user, login_required
 from marcusblog import db, bcrypt
 from marcusblog.models import User, Post
@@ -8,7 +9,7 @@ from twilio.rest import Client
 import random 
 
 users = Blueprint('users', __name__)
-
+users.secret_key = 'otp'
 
 @users.route("/register", methods=['GET', 'POST'])
 def register():
@@ -47,14 +48,26 @@ def getotp():
     if val:
         return render_template("otp.html")
 
+@users.route ("/validateotp", methods = ['POST'])
+def validateotp():
+    otp = request.form['otp']
+    if 'response' in session:
+        s = session['response']
+        session.pop('response',None)
+        if s == otp:
+            return 'Your are Authorized for the session! thank you' 
+        else:
+            return 'Your not AUthorized'    
+
 def generateOTP():
     return random.randrange(100000,999999)  
 
 def getotpAPI(number):
     account_sid='ACdcf496da61c4c4a0502ff4ccd32b8762'
-    auth_token ='2252156cd3be45b8caadacb5a2ab31af'
+    auth_token ='9f9ca481ab1ef79a9235fcb9ff866c97'
     client = Client(account_sid,auth_token)
     otp = generateOTP()
+    session['response'] = str(otp)
     body = 'Your OTP is' + str(otp)
     message = client.messages.create(from_='+13513336544',body=body,to=number)
 
@@ -63,9 +76,7 @@ def getotpAPI(number):
     else:
         False
 
-# @users.route ("/validateotp")
-# def validateotp():
-#     return render_template("home.html")
+
 
 @users.route("/logout")
 def logout():

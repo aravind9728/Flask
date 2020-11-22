@@ -15,7 +15,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control form-control-lg", placeholder="example@marcus.com") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -28,7 +28,7 @@
                             {% endfor %}
                         </div>
                     {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
+                        {{ form.password(class="form-control form-control-lg", placeholder="###########"  ) }}
                     {% endif %}
                 </div>
                 <div class="form-check">
@@ -47,7 +47,7 @@
     <form action="/getotp" method="post">
         <div>
             <label> Enter the mobile number </label>
-            <input type="text" name="number" placeholder="+91***"/>
+            <input class="form-control form-control-lg" type="text" name="number" placeholder="+91**********"/><br>
             <button class="btn btn-outline-info" type="sumbit">GET OTP</button>
             
         </div>
